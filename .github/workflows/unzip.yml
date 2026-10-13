@@ -1,0 +1,18 @@
+name: Unzip source
+on:
+  workflow_dispatch:
+jobs:
+  unzip:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          unzip -o HexarlyPay-Source.zip
+          rm -f HexarlyPay-Source.zip
+          git config user.name "tanvirahmedakondo051-create"
+          git config user.email "tanvirahmedakondo051-create@users.noreply.github.com"
+          git add -A
+          git commit -m "Extract website source"
+          git push
